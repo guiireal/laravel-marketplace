@@ -3,10 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function() {
-    return view('welcome');
-})->name('home');
-
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/product/{slug}', 'HomeController@single')->name('product.single');
 
 Route::middleware('auth')->group(function() {
     Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
