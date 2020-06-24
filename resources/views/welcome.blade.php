@@ -13,7 +13,8 @@
                     <div class="card-body">
                         <h2 class="card-title">{{$product->name}}</h2>
                         <p class="card-text">{{$product->description}}</p>
-                        <a href="{{route('product.single', ['slug' => $product->slug])}}" class="btn btn-success">
+                        <h3>{{$product->format_price}}</h3>
+                        <a href="{{route('product.show', ['slug' => $product->slug])}}" class="btn btn-success">
                             Ver Produto
                         </a>
                     </div>

@@ -18,11 +18,11 @@ class HomeController extends Controller
         return view('welcome', compact('products'));
     }
 
-    public function single(string $slug)
+    public function productShow(string $slug)
     {
         /** @var Product $product */
-        $product = Product::whereSlug($slug)->first();
+        $product = Product::whereSlug($slug)->firstOrFail();
 
-        return view('single', compact('product'));
+        return view('product', compact('product'));
     }
 }
