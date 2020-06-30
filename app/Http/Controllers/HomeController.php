@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         /** @var Collection $products */
-        $products = Product::query()->limit(8)
+        $products = Product::query()->limit(9)
             ->orderByDesc('id')
             ->get();
 
