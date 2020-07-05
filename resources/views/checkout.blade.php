@@ -10,6 +10,19 @@
                 </div>
             </div>
             <form action="" method="post">
+                <input type="hidden" id="session-id" value="{{session()->get('pagseguro_session_code')}}">
+                <input type="hidden" id="card-brand">
+                <input type="hidden" id="purchase-total" value="{{$purchaseTotal}}">
+                <input type="hidden" id="process-url" value="{{route('checkout.process')}}">
+                <input type="hidden" id="thanks-url" value="{{route('checkout.thanks')}}">
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="card-name">
+                            Nome no Cartão
+                        </label>
+                        <input type="text" class="form-control" id="card-name" name="card_name">
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12 form-group">
                         <label for="card-number">
@@ -34,33 +47,11 @@
                         <label for="card-cvv">Código de Segurança</label>
                         <input type="text" class="form-control" id="card-cvv" name="card_cvv">
                     </div>
+                    <div class="col-md-12 form-group" data-action="installments">
+                    </div>
                 </div>
-                <button class="btn btn-success btn-lg">Efetuar Pagamento</button>
+                <button class="btn btn-success btn-lg" data-action="process">Efetuar Pagamento</button>
             </form>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    <script
-        src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
-    <script type="text/javascript">
-        var sessionId = '{{session()->get('pagseguro_session_code')}}';
-        PagSeguroDirectPayment.setSessionId(sessionId);
-        var cardNumber = document.querySelector("input[name='card_number']");
-        var spanBrand = document.querySelector('span.brand');
-        cardNumber.addEventListener('keyup', function () {
-            if (this.value.length >= 6) {
-                PagSeguroDirectPayment.getBrand({
-                    cardBin: this.value.substr(0, 6),
-                    success: function (response) {
-                        spanBrand.innerHTML = "<img src='https://stc.pagseguro.uol.com.br/public/img/payment-methods-flags/68x30/" + response.brand.name + ".png' alt='brand'/>";
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    },
-                });
-            }
-        });
-    </script>
 @endsection

@@ -6,8 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Marketplace L6</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{mix('css/front.css')}}">
+    @hasSection('styles')
+        @yield('styles')
+    @endif
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 40px;">
@@ -46,6 +49,9 @@
     @include('flash::message')
     @yield('content')
 </div>
-@yield('scripts')
+<script src="{{mix('js/front.js')}}"></script>
+@hasSection('scripts')
+    @yield('scripts')
+@endif
 </body>
 </html>
