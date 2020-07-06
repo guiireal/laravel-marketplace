@@ -25,4 +25,17 @@
             @endif
         @endforeach
     </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2>Lojas Destaque</h2>
+            <hr>
+        </div>
+        @foreach($stores as $store)
+            <div class="col-4">
+                <img src="{{asset('storage/logo/default_logo.png')}}" alt="Loja sem Logo" class="img-fluid">
+                <h3>{{$store->name}}</h3>
+                <p>{{$store->description}}</p>
+            </div>
+        @endforeach
+    </div>
 @endsection
